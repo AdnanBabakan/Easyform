@@ -67,17 +67,21 @@ $(document).ready(function() {
       label: "Firstname"
     }
   ];
-  var formOptions = {
-    styleClass: "",
-    action: "handle.php",
-    method: "POST"
-  };
   $('form#easyform').easyform(inputs);
 });
 ```
 Every json combination of JSON objects will make an input or button ( next we'll talk about ) with some available options which some are mandatory and some are not.
 Available options for every input is like below:
 
-Row | Name | Values | Description
---- | ---- | ------ | -----------
-1 | ```type``` | ```text```, ```password```, ```email```, ```number```
+Row | Name | Values | Description | Default | Mandatory
+--- | ---- | ------ | ----------- | ------- | ---------
+1 | ```type``` | ```text```, ```password```, ```email```, ```number```, ```textarea```, ```select```, ```radio```, ```checkbox```, ```sumbit```, ```reset```, ```button``` | This option will define which kind of input you want to be created. | ```text``` | Yes ( If not defined deafult will be replaced )
+2 | ```label``` | Any string | This option will define a label. | A string like: input[Row Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
+3 | ```name``` | Any string | This option defines name of input. | A string like: input[Row Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
+4 | ```id``` | Any string | This option defines id of input. | A string like: input[Row Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
+5 | ```attrs``` | An array with JSON objects | Using this option you can define attrs for an input | None | No
+6 | ```value``` | Any string | This option defines default value for inputs which accept values | None | No
+7 | ```placeholder``` | Any string | This option defines default value for inputs which accept placeholders | None | No
+8 | ```options``` | An array with JSON objects | Using this option you can define options for ```select``` type inputs and boxes for ```radio``` and ```checkbox``` type inputs. | None | No ( If not defined nothing will show up :D )
+
+These are all options for ```inputs``` and using them are easy and next I'll show you some examples.
