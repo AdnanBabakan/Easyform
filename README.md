@@ -28,7 +28,7 @@ To make a form with this plugin just add a form tag to your html file like:
       ...
       <title>Easyform</title>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script src="[Path TO FILE]/easyform.min.js"></script>
+      <script src="[PATH TO FILE]/easyform.min.js"></script>
        ...
     </head>
     <body>
