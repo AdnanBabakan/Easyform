@@ -11,11 +11,17 @@ $.fn.extend({
 		if(options.method) {
 			$(this).attr('method', options.method);
 		}
+		if(options.enctype) {
+			$(this).attr('enctype', options.enctype);
+		}
 		if(options.styleClass) {
 			$(this).attr('class', options.styleClass);
 		} else {
 			$(this).attr('class', 'easyform-default');
 		}
+		$.each(options.attrs, function() {
+			thisElement.attr(this.name, this.value);
+		});
 		var elemntHTML = '<table class="easyform-default">';
 		var idArray = [];
 		var i = 0;
@@ -27,12 +33,13 @@ $.fn.extend({
 		let valueForInputLoop;
 		let placeholderForInputLoop;
 		let idForRadioLoop;
+		let isFormUploading;
 		$.each(inputs, function() {
 			i++;
 			if($.inArray(this.id, idArray)!==-1 && this.id) {
 				if(debugMode==="on") {
 					elemntHTML += '<tr><td colspan="2" style="text-align: center;">Error for this input! [Input number ' + i + '] ( Check log )</td></tr>';
-					console.log("Input with " + this.id + " id cannot be redefined! [Input number " + i + "] ( easyform )");
+					console.log("Input with \'" + this.id + "\' id cannot be redefined! [Input number " + i + "] ( easyform )");
 				}
 			} else {
 				idArray.push(this.id);
@@ -60,13 +67,14 @@ $.fn.extend({
 					default:
 						if(debugMode==="on") {
 							elemntHTML += '<tr><td colspan="2" style="text-align: center;">Error for this input! [Input number ' + i + '] ( Check log )</td></tr>';
-							console.log("Input with " + typeForLoop + " type couldn't be found to be made. [Input number " + i + "] ( easyform )");
+							console.log("Input with \'" + typeForLoop + "\' type couldn't be found to be made. [Input number " + i + "] ( easyform )");
 						}
 					break;
 					case 'text':
 					case 'password':
 					case 'email':
 					case 'number':
+					case 'file':
 						attrForInputLoop = "";
 						$.each(this.attrs, function() {
 							attrForInputLoop += this.name + '="' + this.value + '"';
@@ -83,13 +91,26 @@ $.fn.extend({
 							placeholderForInputLoop = '';
 						}
 						elemntHTML += '<tr><td><label for="' + idForLoop + '">' + labelForLoop + ': </label></td><td><input type="' + typeForLoop + '" name="' + nameForLoop + '" ' + valueForInputLoop + ' ' + placeholderForInputLoop + ' id="' + idForLoop + '" ' + attrForInputLoop + ' /></td></tr>';
+						if(typeForLoop==="file") {
+							isFormUploading = true;
+						}
 					break;
 					case 'textarea':
 						attrForInputLoop = "";
 						$.each(this.attrs, function() {
 							attrForInputLoop += this.name + '="' + this.value + '"';
 						});
-						elemntHTML += '<tr><td><label for="' + idForLoop + '">' + labelForLoop + ': </label></td><td><textarea name="' + nameForLoop + '" id="' + idForLoop + '" ' + attrForInputLoop + '></textarea></td></tr>';
+						if(this.placeholder) {
+							placeholderForInputLoop = 'placeholder="' + this.placeholder + '"';
+						} else {
+							placeholderForInputLoop = '';
+						}
+						if(this.value) {
+							valueForInputLoop = this.value;
+						} else {
+							valueForInputLoop = '';
+						}
+						elemntHTML += '<tr><td><label for="' + idForLoop + '">' + labelForLoop + ': </label></td><td><textarea name="' + nameForLoop + '" ' + placeholderForInputLoop + ' id="' + idForLoop + '" ' + attrForInputLoop + '>' + valueForInputLoop + '</textarea></td></tr>';
 					break;
 					case 'select':
 						elemntHTML += '<tr><td><label for="' + idForLoop + '">' + labelForLoop + ': </label></td><td><select name="' + nameForLoop + '" id="' + idForLoop + '">';
@@ -104,10 +125,16 @@ $.fn.extend({
 						elemntHTML += '</select></td></tr>';
 					break;
 					case 'radio':
-					case 'checkbox':
 						elemntHTML += '<tr><td><label for="' + idForLoop + '">' + labelForLoop + ': </label></td><td>';
 						$.each(this.options, function() {
 							elemntHTML += '<input type="' + typeForLoop + '" name="' + nameForLoop + '" value="' + this.value + '" id="' + idForLoop + '-' + this.value + '" /> <label for="' + idForLoop + '-' + this.value + '">' + this.text + '</label> ';
+						});
+						elemntHTML += '</td></tr>';
+					break;
+					case 'checkbox':
+						elemntHTML += '<tr><td><label for="' + idForLoop + '">' + labelForLoop + ': </label></td><td>';
+						$.each(this.options, function() {
+							elemntHTML += '<input type="' + typeForLoop + '" name="' + nameForLoop + '[]" value="' + this.value + '" id="' + idForLoop + '-' + this.value + '" /> <label for="' + idForLoop + '-' + this.value + '">' + this.text + '</label> ';
 						});
 						elemntHTML += '</td></tr>';
 					break;
@@ -120,6 +147,9 @@ $.fn.extend({
 						});
 						elemntHTML += '<tr><td colspan="2"><button type="' + typeForLoop + '" id="' + idForLoop + '" ' + attrForInputLoop + '>' + this.text + '</button></td></tr>';
 					break;
+				}
+				if(isFormUploading && !options.enctype) {
+					thisElement.attr('enctype', 'multipart/form-data');
 				}
 			}
 		});
