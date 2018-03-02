@@ -83,7 +83,7 @@ $(document).ready(function() {
 Every json combination of JSON objects will make an input or button ( next we'll talk about ) with some available options which some are mandatory and some are not.
 Available options for every input is like below:
 
-Row | Name | Values | Description | Default | Mandatory
+Row | Name | Value(s) | Description | Default | Mandatory
 --- | ---- | ------ | ----------- | ------- | ---------
 1 | ```type``` | ```text```, ```password```, ```email```, ```number```, ```file```, ```textarea```, ```select```, ```radio```, ```checkbox```, ```sumbit```, ```reset```, ```button``` | This option will define which kind of input you want to be created. | ```text``` | Yes ( If not defined deafult will be replaced )
 2 | ```label``` | Any string | This option will define a label. | A string like: input[Input Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
@@ -281,6 +281,43 @@ In case you need to deal with form tag itself you can pass another JSON object a
 
 Option available for this argoument is listed below:
 
+Row | Name | Value(s) | Description | Default | Mandatory
+--- | ---- | ------ | ----------- | ------- | ---------
+1 | ```styleClass``` | Any String | This option defines class or classes used for form. | ```easyform-default``` | No
+2 | ```action``` | Any string | This option defines action attribute of form element. | None | No
+3 | ```method``` | Any string | This option defines method attribute of form element. | None | No
+4 | ```enctype``` | Any string | This option defines enctype attribute of form element. | None | No
+5 | ```attrs``` | An array with JSON objects | Using this option you can define other attributes for the form. | None | No
+
+A complete sample:
+```javascript
+$(document).ready(function() {
+  $('head').easyformImportStyles();
+  var inputs = [
+    {
+      type: "file",
+      name: "myfile"
+    }
+  ];
+  var formOptions = {
+    styleClass: "a",
+    action: "handle.php",
+    method: "POST",
+    attrs: [
+      {name: "data-test", value: "44"},
+      {name: "data-hello", value: "55"}
+    ]
+  };
+  $('form#easyform').easyformDebug();
+  $('form#easyform').easyform(inputs, formOptions);
+});
+```
+In this code we defined class, action, method and some other attributes for the form we're working on.
+
+__*Dev note: As mentioned before if there is file type input the enctype attribute of the form will automatically be set as ```multipart/form-data``` but if you want to change it you candefine it in ```attrs``` option which is first priority and can't be changed if there is file type input.*__
+
+**
+
 ## Debug Mode
 This option will make debug mode on for each form selected and you can see errors for every input you defined and also complete description in log console.
 To turn this mode on use ```easyformDebug``` function just before you call ```easyform``` function like below:
@@ -289,7 +326,7 @@ $(document).ready(function() {
   $('head').easyformImportStyles();
   var inputs = [
     {
-      type: "dsf"
+      type: "aaa"
     },
     {
       type: "text",
