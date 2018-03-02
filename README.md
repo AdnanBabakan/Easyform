@@ -174,6 +174,7 @@ $('form#easyform').easyform(inputs);
 });
 ```
 __* :warning: Warning: You can't define id for radio and checkbox options because they will be defined automatically.*__
+
 Changing from select box to radio and checkbox is very easy that you might not believe! Just change the type from ```select``` to either of ```radio``` or ```checkbox```, and... hmmmm that's it :D.
 ```javascript
 $(document).ready(function() {
