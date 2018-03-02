@@ -96,7 +96,7 @@ Row | Name | Value(s) | Description | Default | Mandatory
 
 These are all options for ```inputs``` and using them are easy and next I'll show you some examples.
 
-__*Warning: None of two or more inputs can have same id, If you do so easyform will throw error but will continue with other inputs.*__
+__* :warning: Warning: None of two or more inputs can have same id, If you do so easyform will throw error but will continue with other inputs.*__
 
 ### Inputs
 
@@ -123,7 +123,7 @@ This code will create to inputs with labels and two kinds of input which first i
 
 If you want to define file type input you can use ```file``` as value of ```type``` in your object.
 
-__*Dev note: As you know for sending files through forms, form enctype should be equal to ```multipart/form-data```. In easy form there is no need to define this as if there is file type input in a form this will automatically be fixed. But ofcourse you can change it if you want other kinds.*__
+__* :wrench: Dev note: As you know for sending files through forms, form enctype should be equal to ```multipart/form-data```. In easy form there is no need to define this as if there is file type input in a form this will automatically be fixed. But ofcourse you can change it if you want other kinds.*__
 
 Creating country selecting ```select```, ```radio```, ```checkbox```:
 
@@ -173,7 +173,7 @@ var inputs = [
 $('form#easyform').easyform(inputs);
 });
 ```
-__*Warning: You can't define id for radio and checkbox options because they will be defined automatically.*__
+__* :warning: Warning: You can't define id for radio and checkbox options because they will be defined automatically.*__
 Changing from select box to radio and checkbox is very easy that you might not believe! Just change the type from ```select``` to either of ```radio``` or ```checkbox```, and... hmmmm that's it :D.
 ```javascript
 $(document).ready(function() {
@@ -219,7 +219,7 @@ $(document).ready(function() {
 });
 ```
 Both of codes will create radio or checkbox inputs with same options.
-__*Dev note: If you choose checkbox type at the end of every checkbox's name there will be additional ```[]``` which is used to get multiple checkbox values in PHP.*__
+__* :wrench: Dev note: If you choose checkbox type at the end of every checkbox's name there will be additional ```[]``` which is used to get multiple checkbox values in PHP.*__
 
 ### Buttons
 Defining buttons are as easy as inputs were. The only thing you need is change the type to either of ```submit```, ```reset``` or ```button```. And using ```text``` option will define text that is shown in button.
@@ -314,9 +314,7 @@ $(document).ready(function() {
 ```
 In this code we defined class, action, method and some other attributes for the form we're working on.
 
-__*Dev note: As mentioned before if there is file type input the enctype attribute of the form will automatically be set as ```multipart/form-data``` but if you want to change it you candefine it in ```attrs``` option which is first priority and can't be changed if there is file type input.*__
-
-**
+__* :wrench: Dev note: As mentioned before if there is file type input the enctype attribute of the form will automatically be set as ```multipart/form-data``` but if you want to change it you candefine it in ```attrs``` option which is first priority and can't be changed if there is file type input.*__
 
 ## Debug Mode
 This option will make debug mode on for each form selected and you can see errors for every input you defined and also complete description in log console.
