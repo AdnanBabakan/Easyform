@@ -220,6 +220,7 @@ $(document).ready(function() {
 });
 ```
 Both of codes will create radio or checkbox inputs with same options.
+
 __*Dev note: If you choose checkbox type at the end of every checkbox's name there will be additional ```[]``` which is used to get multiple checkbox values in PHP.*__
 
 ### Buttons
