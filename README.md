@@ -7,11 +7,11 @@ The only thing you need to know is using of JSON in javascript!
 
 ## How to use?
 
-As I mentioned before using this plugin is way easier than what you think! just include JQuery like below:
+As I mentioned before using this plugin is way easier than what you think! First include JQuery like below:
 ```
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 ```
-Then download either of easyform.js or easyform.min.js ( Which will assist you better - I suggest easyform.min.js file because it's lightweight ) and include in after the JQuery including script tag like below:
+Then download either of easyform.js or easyform.min.js ( Which will assist you better - I suggest easyform.min.js file because it's lightweight ) and include it after the JQuery including script tag like below:
 ```
 <script src="[Path TO FILE]/easyform.min.js"></script>
 ```
@@ -50,7 +50,7 @@ $(document).ready(function() {
 ```
 After doing so you'll see that easyform wrote a text so you know easyform is there for you. :D
 
-Easyform as deafult uses a class called easyform-default which will be ready to use out of box which make forms look a bit cleaner than usual. if you import css like below:
+Easyform as deafult uses a class called ```easyform-default``` which will be ready to use out of box which makes forms look a bit cleaner than usual, if you import css like below:
 ```javascript
 $(document).ready(function() {
   ...
@@ -65,7 +65,7 @@ There are two arguments needed for this function. First is ```inputs``` and seco
 
 ```inputs``` are taking place at the first and we will follow the steps one by one.
 
-```inputs``` are the main parts of form and your main concern to deal with in Easyform. for making inputs of anykind you need to use JSON with some options in an array so easyform can get your ideas and make it for you.
+```inputs``` are the main parts of form and your main concern to deal with in Easyform. To make inputs of any kind you need to use JSON with some options in an array so Easyform can get your ideas and make it for you.
 
 Sample:
 ```javascript
@@ -80,7 +80,7 @@ $(document).ready(function() {
   $('form#easyform').easyform(inputs);
 });
 ```
-Every json combination of JSON objects will make an input or button ( next we'll talk about ) with some available options which some are mandatory and some are not.
+Every JSON objects will make an input or button ( next we'll talk about ) with some available options which some are mandatory and some are not.
 Available options for every input is like below:
 
 Row | Name | Value(s) | Description | Default | Mandatory
@@ -96,11 +96,11 @@ Row | Name | Value(s) | Description | Default | Mandatory
 
 These are all options for ```inputs``` and using them are easy and next I'll show you some examples.
 
-__* :warning: Warning: None of two or more inputs can have same id, If you do so easyform will throw error but will continue with other inputs.*__
+__*Warning: None of two or more inputs can have same id, If you do so easyform will throw error but will continue with other inputs.*__
 
 ### Inputs
 
-Creating two inputs for username and password.
+#### Creating two inputs for username and password.
 ```javascript
 $(document).ready(function() {
   $('head').easyformImportStyles();
@@ -123,11 +123,11 @@ This code will create to inputs with labels and two kinds of input which first i
 
 If you want to define file type input you can use ```file``` as value of ```type``` in your object.
 
-__* :wrench: Dev note: As you know for sending files through forms, form enctype should be equal to ```multipart/form-data```. In easy form there is no need to define this as if there is file type input in a form this will automatically be fixed. But ofcourse you can change it if you want other kinds.*__
+__*Dev note: As you know for sending files through forms, form enctype should be equal to ```multipart/form-data```. In Easyform there is no need to define this as if there is file type input in a form this will automatically be fixed. But ofcourse you can change it if you want other kinds.*__
 
-Creating country selecting ```select```, ```radio```, ```checkbox```:
+#### Creating country selecting ```select```, ```radio```, ```checkbox```:
 
-Doing so easy and transforming them to eachother is also easy to do.
+Doing so is very easy and so transforming them to eachother is.
 
 To define options in select box you need to use ```options``` option in you json which will need another JSON combination included in an array.
 ```javascript
@@ -151,7 +151,7 @@ var inputs = [
 $('form#easyform').easyform(inputs);
 });
 ```
-This code will creat a select box with 6 options to choose. You can also define unique id for every option in select boxes like below:
+This code will create a select box with 6 options to choose. You can also define unique id for every option in select boxes like below:
 ```javascript
 $(document).ready(function() {
 $('head').easyformImportStyles();
@@ -173,7 +173,7 @@ var inputs = [
 $('form#easyform').easyform(inputs);
 });
 ```
-__* :warning: Warning: You can't define id for radio and checkbox options because they will be defined automatically.*__
+__*Warning: You can't define id for radio and checkbox options because they will be defined automatically.*__
 
 Changing from select box to radio and checkbox is very easy that you might not believe! Just change the type from ```select``` to either of ```radio``` or ```checkbox```, and... hmmmm that's it :D.
 ```javascript
@@ -220,7 +220,7 @@ $(document).ready(function() {
 });
 ```
 Both of codes will create radio or checkbox inputs with same options.
-__* :wrench: Dev note: If you choose checkbox type at the end of every checkbox's name there will be additional ```[]``` which is used to get multiple checkbox values in PHP.*__
+__*Dev note: If you choose checkbox type at the end of every checkbox's name there will be additional ```[]``` which is used to get multiple checkbox values in PHP.*__
 
 ### Buttons
 Defining buttons are as easy as inputs were. The only thing you need is change the type to either of ```submit```, ```reset``` or ```button```. And using ```text``` option will define text that is shown in button.
@@ -258,7 +258,7 @@ $(document).ready(function() {
   $('form#easyform').easyform(inputs);
 });
 ```
-This code will create an input of ```number``` type which have min and max attributes of 50 and 70. You can also define classes like this. If you wan't multiple class just use space between them.
+This code will create an input of ```number``` type which have min and max attributes of 50 and 70. You can also define classes like this. If you want multiple classes just use space between them.
 ```javascript
 $(document).ready(function() {
   $('head').easyformImportStyles();
@@ -280,7 +280,7 @@ $(document).ready(function() {
 ## Form Options
 In case you need to deal with form tag itself you can pass another JSON object as the second argument in the easyform function.
 
-Option available for this argoument is listed below:
+Available options for this argoument is listed below:
 
 Row | Name | Value(s) | Description | Default | Mandatory
 --- | ---- | ------ | ----------- | ------- | ---------
@@ -315,7 +315,32 @@ $(document).ready(function() {
 ```
 In this code we defined class, action, method and some other attributes for the form we're working on.
 
-__* :wrench: Dev note: As mentioned before if there is file type input the enctype attribute of the form will automatically be set as ```multipart/form-data``` but if you want to change it you candefine it in ```attrs``` option which is first priority and can't be changed if there is file type input.*__
+__*Dev note: As mentioned before if there is file type input the enctype attribute of the form will automatically be set as ```multipart/form-data``` but if you want to change it you can define it with ```enctype``` option which is first priority and can't be changed if there is file type input.*__
+
+Example:
+```javascript
+$(document).ready(function() {
+  $('head').easyformImportStyles();
+  var inputs = [
+    {
+      type: "file",
+      name: "myfile"
+    }
+  ];
+  var formOptions = {
+    styleClass: "a",
+    action: "handle.php",
+    method: "POST",
+    enctype: "anything",
+    attrs: [
+      {name: "data-test", value: "44"},
+      {name: "data-hello", value: "55"}
+    ]
+  };
+  $('form#easyform').easyformDebug();
+  $('form#easyform').easyform(inputs, formOptions);
+});
+```
 
 ## Debug Mode
 This option will make debug mode on for each form selected and you can see errors for every input you defined and also complete description in log console.
@@ -342,8 +367,8 @@ $(document).ready(function() {
 ```
 This code will turn debug mode on and will generate two errors.
 
-First error is because of first input type which is 'aaa' and not defined in easyform.
+First error is because of first input type which is 'aaa' and not defined in Easyform.
 
 Second error is because of id of second and third inputs which are same.
 
-Instead of escaping errs it will show that there was a problem with it and for more details you can open your browsers log console and see what's going on.
+Instead of skipping errors it will show that there was a problem with it and for more details you can open your browsers log console and see what's going on.
