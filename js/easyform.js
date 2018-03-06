@@ -2,7 +2,7 @@ $.fn.extend({
 	easyformDebug: function() {
 		$(this).attr('data-easyform-debug', 'on');
 	},
-	easyform: function(inputs, options={}) {
+	easyform: function(inputs, options={}, submitCallBack=function() {}) {
 		var thisElement = $(this);
 		var debugMode = thisElement.data('easyform-debug');
 		if(options.action) {
@@ -34,6 +34,7 @@ $.fn.extend({
 		let placeholderForInputLoop;
 		let idForRadioLoop;
 		let isFormUploading;
+		let isThereSubmitFunc;
 		$.each(inputs, function() {
 			i++;
 			if($.inArray(this.id, idArray)!==-1 && this.id) {
@@ -147,6 +148,21 @@ $.fn.extend({
 						});
 						elemntHTML += '<tr><td colspan="2"><button type="' + typeForLoop + '" id="' + idForLoop + '" ' + attrForInputLoop + '>' + this.text + '</button></td></tr>';
 					break;
+					case 'submitFunc':
+						if(isThereSubmitFunc) {
+							if(debugMode==="on") {
+								elemntHTML += '<tr><td colspan="2" style="text-align: center;">Error for this input! [Input number ' + i + '] ( Check log )</td></tr>';
+								console.log("There can only be one submitFunc. [Input number " + i + "] ( easyform )");
+							}
+						} else {
+							attrForInputLoop = "";
+							$.each(this.attrs, function() {
+								attrForInputLoop += this.name + '="' + this.value + '"';
+							});
+							elemntHTML += '<tr><td colspan="2"><button type="button" id="submitFunc" ' + attrForInputLoop + '>' + this.text + '</button></td></tr>';
+							isThereSubmitFunc = true;
+						}
+					break;
 				}
 				if(isFormUploading && !options.enctype) {
 					thisElement.attr('enctype', 'multipart/form-data');
@@ -158,6 +174,15 @@ $.fn.extend({
 		if(i===0) {
 			thisElement.html("Come on! Make a form so I can display it!");
 		}
+		thisElement.find('button#submitFunc').click(function() {
+			var formData = [];
+			thisElement.find('input').each(function() {
+				var thisInputName = $(this).attr('name');
+				var thisInputValue = $(this).val();
+				formData.push({'name': thisInputName, 'value': thisInputValue});
+			});
+			submitCallBack(results=formData);
+		});
 	},
 	easyformImportStyles: function() {
 		const easyformStyles = 'form.easyform-default input, form.easyform-default textarea, form.easyform-default select, form.easyform-default button {\
