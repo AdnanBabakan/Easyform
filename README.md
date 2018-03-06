@@ -282,7 +282,7 @@ $(document).ready(function() {
 
 ### Submit Function
 This arguments acts as a callback in Easyform function.
-To call this function you shall add a input type ```submitFunc``` which will call the function after being clicked.
+To call this function you shall add an input type ```submitFunc``` which will call the function after being clicked.
 and for the next you'll need to define third argument of Easyform as a function. Like below:
 ```javascript
 $(document).ready(function() {
@@ -312,7 +312,7 @@ $(document).ready(function() {
   });
 });
 ```
-In this code after user clicked the button with ```submitFun``` which is "saying Do the function!" the function at the third place of easyform function will be called which will perfom whatever is included in it, in this case we defined a console.log so there will be log in your console when you submit the form.
+In this code after user clicked the button with ```submitFun``` which is "saying Do the function!" the function at the third place of easyform function will be called which will perfom whatever is included in it, in this case we defined a ```console.log``` so there will be log in your console when you submit the form.
 
 __*Dev note: There can only be one input with ```submitFunc``` type.*__
 
