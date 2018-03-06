@@ -63,6 +63,8 @@ After doing so styles will be added to head of your html document or you can add
 
 There are two arguments needed for this function. First is ```inputs``` and second ```options```. Both are using JSON so try to get familiar with it. :)
 
+And there is also third argument called ```submitFunc``` where you can find the description in Advanced section of this README.
+
 ```inputs``` are taking place at the first and we will follow the steps one by one.
 
 ```inputs``` are the main parts of form and your main concern to deal with in Easyform. To make inputs of any kind you need to use JSON with some options in an array so Easyform can get your ideas and make it for you.
@@ -85,7 +87,7 @@ Available options for every input is like below:
 
 Row | Name | Value(s) | Description | Default | Mandatory
 --- | ---- | ------ | ----------- | ------- | ---------
-1 | ```type``` | ```text```, ```password```, ```email```, ```number```, ```file```, ```textarea```, ```select```, ```radio```, ```checkbox```, ```sumbit```, ```reset```, ```button``` | This option will define which kind of input you want to be created. | ```text``` | Yes ( If not defined deafult will be replaced )
+1 | ```type``` | ```text```, ```password```, ```email```, ```number```, ```file```, ```textarea```, ```select```, ```radio```, ```checkbox```, ```sumbit```, ```reset```, ```button```, ```submitFunc``` | This option will define which kind of input you want to be created. | ```text``` | Yes ( If not defined deafult will be replaced )
 2 | ```label``` | Any string | This option will define a label. | A string like: input[Input Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
 3 | ```name``` | Any string | This option defines name of input. | A string like: input[Input Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
 4 | ```id``` | Any string | This option defines id of input. | A string like: input[Input Number]. Like input1 - input2 ... | Yes ( If not defined deafult will be replaced )
@@ -277,6 +279,81 @@ $(document).ready(function() {
   $('form#easyform').easyform(inputs);
 });
 ```
+
+### Submit Function
+This arguments acts as a callback in Easyform function.
+To call this function you shall add a input type ```submitFunc``` which will call the function after being clicked.
+and for the next you'll need to define third argument of Easyform as a function. Like below:
+```javascript
+$(document).ready(function() {
+  $('head').easyformImportStyles();
+  var inputs = [
+    {
+      type: "text",
+      name: "username",
+      label: "Username"
+    },
+    {
+      type: "submitFunc",
+      text: "Do the function!"
+    }
+  ];
+  var formOptions = {
+    styleClass: "a",
+    action: "handle.php",
+    method: "POST",
+    attrs: [
+      {name: "data-test", value: "44"},
+      {name: "data-hello", value: "55"}
+    ]
+  };
+  $('form#easyform').easyform(inputs, formOptions, function() {
+    console.log('Submit Function Called');
+  });
+});
+```
+In this code after user clicked the button with ```submitFun``` which is "saying Do the function!" the function at the third place of easyform function will be called which will perfom whatever is included in it, in this case we defined a console.log so there will be log in your console when you submit the form.
+
+__*Dev note: There can only be one input with ```submitFunc``` type.*__
+
+This call back also contains all of the inputs names and values. This data is stored in a object which you can call in the first argument of your callback function like below:
+
+```javascript
+$(document).ready(function() {
+  $('head').easyformImportStyles();
+  var inputs = [
+    {
+      type: "text",
+      name: "username",
+      label: "Username"
+    },
+    {
+      type: "email",
+      name: "email",
+      label: "Email"
+    },
+    {
+      type: "submitFunc",
+      text: "Go for it!"
+    }
+  ];
+  var formOptions = {
+    styleClass: "a",
+    action: "handle.php",
+    method: "POST",
+    attrs: [
+      {name: "data-test", value: "44"},
+      {name: "data-hello", value: "55"}
+    ]
+  };
+  $('form#easyform').easyform(inputs, formOptions, function(a) {
+    for (i = 0; i < a.length; i++) {
+      console.log(a[i].name + ': ' + a[i].value);
+    }
+  });
+});
+```
+In this code there is a parameter called ```a``` in the callback function which will contain results data. And for the rest we loop through the object and logged it in console with theri value.
 
 ## Form Options
 In case you need to deal with form tag itself you can pass another JSON object as the second argument in the easyform function.
