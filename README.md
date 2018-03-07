@@ -8,15 +8,27 @@ The only thing you need to know is using of JSON in javascript!
 ## How to use?
 
 As I mentioned before using this plugin is way easier than what you think! First include JQuery like below:
-```
+```html
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 ```
 Then download either of easyform.js or easyform.min.js ( Which will assist you better - I suggest easyform.min.js file because it's lightweight ) and include it after the JQuery including script tag like below:
-```
+```html
 <script src="[Path TO FILE]/easyform.min.js"></script>
 ```
-There you go! You just installed Easyform! Easy enough? :)
+Or you can use CDN for using this plugin.
 
+There are two version of CDN hosted file.
+
+The code below will not be updated for new version ( Safe use ):
+```html
+<script src="https://cdn.rawgit.com/AdnanBabakan/Easyform/4cfc3cb8/js/easyform.min.js"></script>
+```
+The code will be updated for new version and new features ( May cause problems in major updates ):
+```html
+<script src="https://rawgit.com/AdnanBabakan/Easyform/master/js/easyform.min.js"></script>
+```
+
+There you go! You just installed Easyform! Easy enough? :)
 
 Next steps are easy to do and advance.
 
