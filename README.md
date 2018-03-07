@@ -15,7 +15,7 @@ Then download either of easyform.js or easyform.min.js ( Which will assist you b
 ```html
 <script src="[Path TO FILE]/easyform.min.js"></script>
 ```
-Or you can use CDN for using this plugin.
+Or you can use CDN for including this plugin.
 
 There are two version of CDN hosted file.
 
