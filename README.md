@@ -15,17 +15,10 @@ Then download either of easyform.js or easyform.min.js ( Which will assist you b
 ```html
 <script src="[Path TO FILE]/easyform.min.js"></script>
 ```
-Or you can use CDN for including this plugin.
+Or you can use CDN to include this plugin.
 
-There are two versions of CDN hosted files.
-
-The code below will not be updated for new versions ( Safe use ):
 ```html
-<script src="https://cdn.rawgit.com/AdnanBabakan/Easyform/4cfc3cb8/js/easyform.min.js"></script>
-```
-The code below will be updated for new versions and new features ( May cause problems in major updates ):
-```html
-<script src="https://rawgit.com/AdnanBabakan/Easyform/master/js/easyform.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AdnanBabakan/Easyform@4cfc3cb861cd0545f11adefbea345fb33c0e0444/js/easyform.min.js"></script>
 ```
 
 There you go! You just installed Easyform! Easy enough? :)
