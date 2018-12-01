@@ -18,7 +18,7 @@ Then download either of easyform.js or easyform.min.js ( Which will assist you b
 Or you can use CDN to include this plugin.
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/AdnanBabakan/Easyform@4cfc3cb861cd0545f11adefbea345fb33c0e0444/js/easyform.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AdnanBabakan/Easyform/js/easyform.min.js"></script>
 ```
 
 There you go! You just installed Easyform! Easy enough? :)
